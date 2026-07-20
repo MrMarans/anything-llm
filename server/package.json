@@ -70,6 +70,7 @@
     "jsdom": "26.1.0",
     "jsonrepair": "^3.7.0",
     "jsonwebtoken": "^9.0.0",
+    "jwks-rsa": "^3.1.0",
     "langchain": "0.1.36",
     "marked": "15.0.12",
     "mime": "^3.0.0",
@@ -101,6 +102,7 @@
     "winston": "^3.13.0"
   },
   "resolutions": {
+    "zod": "4.0.0",
     "**/graphql-request/form-data": "3.0.4",
     "form-data": "4.0.4"
   },
