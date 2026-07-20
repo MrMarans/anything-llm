@@ -30,6 +30,10 @@ async function bootSSL(app, port = 3001) {
     const credentials = { key: privateKey, cert: certificate };
     const server = https.createServer(credentials, app);
 
+    // Must attach WebSockets before any await: index.js registers app.ws routes
+    // immediately after calling bootSSL(), and an await here would yield first.
+    require("@mintplex-labs/express-ws").default(app, server);
+
     await runMultiUserBootstraps();
 
     server
@@ -46,7 +50,6 @@ async function bootSSL(app, port = 3001) {
       })
       .on("error", catchSigTerms);
 
-    require("@mintplex-labs/express-ws").default(app, server);
     return { app, server };
   } catch (e) {
     console.error(
